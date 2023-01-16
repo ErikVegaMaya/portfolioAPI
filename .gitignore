@@ -361,11 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/PortfolioAPI/bin/Debug/net6.0/PortfolioAPI.dll
-/PortfolioAPI/bin/Debug/net6.0/PortfolioAPI.pdb
-/.vs/PortfolioAPI/DesignTimeBuild/.dtbcache.v2
-/.vs/PortfolioAPI/v17/.suo
-/PortfolioAPI/obj/Debug/net6.0/ref/PortfolioAPI.dll
-/PortfolioAPI/obj/Debug/net6.0/refint/PortfolioAPI.dll
-/PortfolioAPI/obj/Debug/net6.0/PortfolioAPI.dll
-/PortfolioAPI/obj/Debug/net6.0/PortfolioAPI.pdb
+/.vs/
+*.dll
+*.pdb
