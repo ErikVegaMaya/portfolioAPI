@@ -25,13 +25,13 @@ namespace PortfolioAPI.Controllers
 
         }
 
-        // GET api/<SkillsController>/5
+        //GET api/<SkillsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Skill>> GetSkill(int id)
         {
             var skill = await _dbContext.Skills.FindAsync(id);
 
-            if(skill == null)
+            if (skill == null)
             {
                 return NotFound();
             }
@@ -39,7 +39,7 @@ namespace PortfolioAPI.Controllers
             return Ok(skill);
         }
 
-        // POST api/<SkillsController>
+        //POST api/<SkillsController>
         [HttpPost]
         public async Task<ActionResult<Skill>> PostSkill([FromBody] Skill skill)
         {
@@ -57,25 +57,9 @@ namespace PortfolioAPI.Controllers
                 return BadRequest();
             }
 
-            _dbContext.Entry(skill).State= EntityState.Modified;
-
-            try
-            {
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!skillExist(id))
-                {
-                    return NotFound(nameof(skill));
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            _dbContext.Entry(skill).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return Ok();
         }
 
         // DELETE api/<SkillsController>/5
@@ -83,16 +67,16 @@ namespace PortfolioAPI.Controllers
         public async Task<ActionResult<Skill>> Delete(int id)
         {
             var skill = await _dbContext.Skills.FindAsync(id);
-            if (skill == null) { return NotFound();}
+            if (skill == null) { return NotFound(); }
             _dbContext.Skills.Remove(skill);
             await _dbContext.SaveChangesAsync();
             return Ok();
 
         }
 
-        public bool skillExist (int id)
-        {
-            return _dbContext.Skills.Any(e => e.IdSkill == id);
-        }
+        //public bool skillExist(int id)
+        //{
+        //    return _dbContext.Skills.Any(e => e.IdSkill == id);
+        //}
     }
 }
