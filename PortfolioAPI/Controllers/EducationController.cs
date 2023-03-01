@@ -52,7 +52,7 @@ namespace PortfolioAPI.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<Education>> Put(int id, [FromBody] Education education)
         {
-            if (id == education.IdEdu)
+            if (id != education.IdEdu)
             {
                 return BadRequest();
             }
