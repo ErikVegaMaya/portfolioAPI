@@ -24,6 +24,17 @@ namespace PortfolioAPI.Controllers
             return Ok(experiences);
         }
 
+        [Route("topTreeExperiences")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Experience>>> GetTopTree()
+        {
+            List<Experience> experiences = await _dbContext.Experiences
+                .FromSql($"EXECUTE SP_top_tree_experiences")
+                .ToListAsync<Experience>();
+            return Ok(experiences);
+        }
+
+
         // GET api/<ExperienceController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Experience>> GetExperience(int id)
