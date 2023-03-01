@@ -25,6 +25,16 @@ namespace PortfolioAPI.Controllers
 
         }
 
+        [Route("topFiveSkills")]
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Skill>>> GetTopFive()
+        {
+            List<Skill> skill = await _dbContext.Skills
+                .FromSql($"EXECUTE SP_top_five_skills")
+                .ToListAsync<Skill>();
+            return Ok(skill);
+        }
+
         //GET api/<SkillsController>/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Skill>> GetSkill(int id)
